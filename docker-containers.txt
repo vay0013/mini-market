@@ -1,0 +1,1 @@
+docker run -d --name mini-market-db -p 5432:5432 -e POSTGRES_DB=market -e POSTGRES_USERNAME=market -e POSTGRES_PASSWORD=market postgres:16

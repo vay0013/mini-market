@@ -3,6 +3,7 @@ package com.vay.minimarket.service;
 import com.vay.minimarket.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
     void createProduct(Product product);
@@ -13,8 +14,8 @@ public interface ProductService {
 
     List<Product> getProductList();
 
-    Product getProductById(int productId);
+    Product getProductById(long productId);
 
-    List<Product> getProductByName(String productName);
+    Product getProductByName(String productName);
 //    List<Product> getProductByCategory(int categoryId);
 }
