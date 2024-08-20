@@ -12,6 +12,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Product {
     @Id
     private Long id;

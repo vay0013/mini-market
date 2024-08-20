@@ -28,12 +28,14 @@ public class DefaultProductService implements ProductService {
         productRepository.deleteById(productId);
     }
 
+
     @Override
     @Transactional
     public void updateProduct(long id, String name, double price) {
         productRepository.findById(id).ifPresentOrElse(
                 product -> {
                     product.setName(name);
+
                     product.setPrice(price);
                 }, () -> {
                     throw new NoSuchElementException();
