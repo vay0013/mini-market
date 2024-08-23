@@ -10,7 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.stream.LongStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,7 +24,7 @@ class DefaultProductServiceTest {
     DefaultProductService service;
 
     @Test
-    void createProduct() {
+    void createProductCreatesProduct() {
         // given
         var name = "new product";
         var price = 10.00;
@@ -41,7 +42,7 @@ class DefaultProductServiceTest {
     }
 
     @Test
-    void deleteProduct() {
+    void deleteProductDeletesProduct() {
         // given
         var id = 1L;
 
@@ -53,14 +54,18 @@ class DefaultProductServiceTest {
     }
 
     @Test
-    void updateProduct() {
+    void updateProduct_ProductExist_UpdatesProduct() {
         var id = 1L;
-        var newName = "new product";
+        var newName = "new name of product";
         var newPrice = 10.00;
+        var product = new Product(1L, "product", 1.0);
+
+        doReturn(new Product(id, "new product", 10.00))
+        .when(productRepository).save(new Product(null, "new product", 10.00));
     }
 
     @Test
-    void getAllProducts() {
+    void getAllProductsWithoutFilter_ReturnsAllProducts() {
         // given
         var products = LongStream.range(1, 4)
                 .mapToObj(i -> new Product(i, "product №$d".formatted(i), 10.00))
@@ -69,7 +74,7 @@ class DefaultProductServiceTest {
         doReturn(products).when(productRepository).findAll();
 
         // when
-        var result = service.getAllProducts();
+        var result = service.getAllProducts(null);
 
         // then
         assertNotNull(result);

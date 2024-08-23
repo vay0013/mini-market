@@ -11,10 +11,7 @@ public interface ProductService {
 
     void updateProduct(long id, String name, double price);
 
-    List<Product> getAllProducts();
+    List<Product> getAllProducts(String filter);
 
     Product getProductById(long productId);
-
-    Product getProductByName(String productName);
-//    List<Product> getProductByCategory(int categoryId);
 }

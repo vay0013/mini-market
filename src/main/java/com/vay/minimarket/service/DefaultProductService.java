@@ -44,10 +44,7 @@ public class DefaultProductService implements ProductService {
     @Override
     public List<Product> getAllProducts(String filter) {
         if (filter != null && !filter.isBlank()) {
-            return productRepository.findAll().stream()
-                    .map(product -> {
-                        product.
-                    })
+            return productRepository.findAllByNameLikeIgnoreCase("%" + filter + "%");
         }
         return productRepository.findAll();
     }
@@ -55,11 +52,5 @@ public class DefaultProductService implements ProductService {
     @Override
     public Product getProductById(long productId) {
         return productRepository.findById(productId).orElseThrow(NoSuchElementException::new);
-    }
-
-    @Override
-    public Product getProductByName(String productName) {
-        return productRepository.findProductByNameLikeIgnoreCase("%" + productName + "%")
-                .orElseThrow(NoSuchElementException::new);
     }
 }
