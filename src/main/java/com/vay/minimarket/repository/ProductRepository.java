@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Optional<Product> findProductByNameLikeIgnoreCase(String name);
+    List<Product> findAllByNameLikeIgnoreCase(String name);
 }

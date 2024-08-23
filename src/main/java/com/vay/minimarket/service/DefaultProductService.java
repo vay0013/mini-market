@@ -24,13 +24,6 @@ public class DefaultProductService implements ProductService {
 
     @Override
     @Transactional
-    public void deleteProduct(long productId) {
-        productRepository.deleteById(productId);
-    }
-
-
-    @Override
-    @Transactional
     public void updateProduct(long id, String name, double price) {
         productRepository.findById(id).ifPresentOrElse(
                 product -> {
@@ -43,7 +36,19 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public List<Product> getProductList() {
+    @Transactional
+    public void deleteProduct(long productId) {
+        productRepository.deleteById(productId);
+    }
+
+    @Override
+    public List<Product> getAllProducts(String filter) {
+        if (filter != null && !filter.isBlank()) {
+            return productRepository.findAll().stream()
+                    .map(product -> {
+                        product.
+                    })
+        }
         return productRepository.findAll();
     }
 
