@@ -1,12 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/mini-market-db
+    url: jdbc:postgresql://localhost:5432/market
     username: market
     password: market
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: create-drop
-  data:
-    jdbc:
-      dialect: postgresql

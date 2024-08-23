@@ -1,11 +1,12 @@
 package com.vay.minimarket.service;
 
 import com.vay.minimarket.model.Product;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface ProductService {
-    void createProduct(Product product);
+    void createProduct(String name, double price);
 
     void deleteProduct(long productId);
 

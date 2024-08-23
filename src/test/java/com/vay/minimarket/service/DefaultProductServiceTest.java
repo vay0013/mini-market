@@ -24,7 +24,7 @@ class DefaultProductServiceTest {
     DefaultProductService service;
 
     @Test
-    void createProductCreatesProduct() {
+    void createProduct_CreatesProduct() {
         // given
         var name = "new product";
         var price = 10.00;
@@ -34,7 +34,7 @@ class DefaultProductServiceTest {
                 .save(new Product(null, "new product", 10.00));
 
         // when
-        service.createProduct(new Product(null, name, price));
+        service.createProduct(name, price);
 
         // then
         verify(productRepository, times(1))
@@ -42,7 +42,7 @@ class DefaultProductServiceTest {
     }
 
     @Test
-    void deleteProductDeletesProduct() {
+    void deleteProduct_DeletesProduct() {
         // given
         var id = 1L;
 
@@ -61,11 +61,11 @@ class DefaultProductServiceTest {
         var product = new Product(1L, "product", 1.0);
 
         doReturn(new Product(id, "new product", 10.00))
-        .when(productRepository).save(new Product(null, "new product", 10.00));
+                .when(productRepository).save(new Product(null, "new product", 10.00));
     }
 
     @Test
-    void getAllProductsWithoutFilter_ReturnsAllProducts() {
+    void getAllProducts_WithoutFilter_ReturnsAllProducts() {
         // given
         var products = LongStream.range(1, 4)
                 .mapToObj(i -> new Product(i, "product №$d".formatted(i), 10.00))
